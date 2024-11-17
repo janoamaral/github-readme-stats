@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">View Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -51,18 +51,34 @@
     <a href="/docs/readme_kr.md">한국어</a>
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
+    .
+    <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
 
-# 主な機能
+# 主な機能 <!-- omit in toc -->
 
 - [GitHub Stats Card](#github-stats-card)
+    - [特定の統計情報を隠す](#特定の統計情報を隠す)
+    - [プライベートリポジトリへのコミットをカウントする](#プライベートリポジトリへのコミットをカウントする)
+    - [アイコンを表示する](#アイコンを表示する)
+    - [テーマの変更](#テーマの変更)
+    - [テーマを自分でカスタマイズする](#テーマを自分でカスタマイズする)
 - [GitHub Extra Pins](#github-extra-pins)
+    - [使い方](#使い方)
+    - [デモ](#デモ)
 - [Top Languages Card](#top-languages-card)
-- [Themes](#テーマの変更)
-- [Customization](#テーマを自分でカスタマイズする)
-- [Deploy Yourself](#自分の-Vercel-インスタンスにデプロイする)
+    - [使い方](#使い方-1)
+    - [特定の言語を隠す](#特定の言語を隠す)
+    - [レイアウトをコンパクトにする](#レイアウトをコンパクトにする)
+    - [デモ](#デモ-1)
+    - [全てのデモ](#全てのデモ)
+    - [クイックヒント (カードを並べる)](#クイックヒント-カードを並べる)
+  - [自分の Vercel インスタンスにデプロイする](#自分の-vercel-インスタンスにデプロイする)
+  - [:sparkling\_heart: このプロジェクトを支援する](#sparkling_heart-このプロジェクトを支援する)
 
 # GitHub Stats Card
 
@@ -72,7 +88,7 @@
 `?username=` の値は、あなたの GitHub アカウントのユーザー名に変更してください。
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](../src/calculateRank.js)をご覧ください。_
@@ -84,7 +100,7 @@ _Note: カードに表示されるランクはユーザの統計情報に基づ�
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### プライベートリポジトリへのコミットをカウントする
@@ -96,7 +112,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 > Options: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### アイコンを表示する
@@ -104,7 +120,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 クエリパラメータ `?show_icons=true` を使用することで、アイコンの表示が有効になります。
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### テーマの変更
@@ -114,7 +130,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 `?theme=THEME_NAME` は以下のように使います。
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### 内蔵テーマの一覧
@@ -137,7 +153,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
 - `hide_border` - カードの境界線を非表示にします _(ブール値)_
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
-- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 14400, 最大値: 86400)_
 - `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
 
 ##### bg_color の グラデーション指定
@@ -155,11 +171,12 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `hide` - 特定の統計情報を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 今年度のコミット数だけでなく、コミット数の総数をカウントする _(boolean)_
 - `count_private` - プライベートリポジトリへのコミットをカウントする _(boolean)_
 - `line_height` - テキストの行の高さ _(number)_
+- `custom_title` - タイトル文字列を変更する
+- `disable_animations` - カードのアニメーションを無効にする _(boolean)_
 
 #### Repo Card だけに存在するオプション
 
@@ -169,11 +186,13 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 - `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
-- `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
+- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
+- `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
+- `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
+- `custom_title` - タイトル文字列を変更する
 
-> :warning: **重要:**  
+> :warning: **重要:**
 > [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。
 > (例: `c++` は `c%2B%2B`, `jupyter notebook` は `jupyter%20notebook`, など)
 
@@ -192,16 +211,16 @@ GitHub extra pins を使うと、GitHub の readme プロフィールを使っ�
 エンドポイント: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### デモ
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 リポジトリのオーナーのユーザー名を含める場合は、show_owner 変数を使用します。
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Languages Card
 
@@ -249,33 +268,33 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 - デフォルト
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - 特定の統計情報を隠す
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
 - アイコンを表示する
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - コミット数の総数をカウントする
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - テーマの変更
 
 任意の[テーマ](#themes)を選択できます。
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - グラデーション
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - stats card のカスタマイズ
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - repo card のカスタマイズ
 
@@ -291,7 +310,7 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 通常、画像を並べてレイアウトすることはできません。画像を並べるには、以下のような方法があります。
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
@@ -314,16 +333,16 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
  <summary>Vercelの設定ガイド</summary>
 
 1. [vercel.com](https://vercel.com/)に行きます。
-1. `Log in`をクリックします。  
+1. `Log in`をクリックします。
    ![](https://files.catbox.moe/tct1wg.png)
-1. `Continue with GitHub` を押して GitHub にサインインします。  
+1. `Continue with GitHub` を押して GitHub にサインインします。
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. GitHub にサインインし、すべてのリポジトリへのアクセスを許可します。
 1. このリポジトリをフォークします。
 1. [Vercel dashboard](https://vercel.com/dashboard)に戻ります。
-1. `Import Project` を選択します。  
+1. `Import Project` を選択します。
    ![](https://files.catbox.moe/qckos0.png)
-1. `Import Git Repository` を選択します。  
+1. `Import Git Repository` を選択します。
    ![](https://files.catbox.moe/pqub9q.png)
 1. root を選択して、すべてをそのままにしておき、PAT_1 という名前の環境変数を（下図のように）追加します。これには個人アクセストークン (PAT) が含まれており、[ここ](https://github.com/settings/tokens/new)で簡単に作成することができます (すべてをそのままにしておいて、何かに名前を付けてください。)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -333,7 +352,7 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 
 ## :sparkling_heart: このプロジェクトを支援する
 
-私はできる限りのことをオープンソースで行い、また、このプロジェクトを利用する上で困っている皆さん全員に返信するようにしています。もちろん返信には時間が掛かる場合がありますが。  
+私はできる限りのことをオープンソースで行い、また、このプロジェクトを利用する上で困っている皆さん全員に返信するようにしています。もちろん返信には時間が掛かる場合がありますが。
 このプロジェクトは無料でご利用いただけます。
 
 しかしながら、もしあなたがこのプロジェクトに満足しているのであれば、あるいはただ、私がソフトウェアを作り続けるよう励ましたいのであれば、いくつかの方法があります。
@@ -346,7 +365,7 @@ Thanks! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 コントリビュートは大歓迎です！ :heart_eyes:
 

@@ -1,17 +1,15 @@
-require("dotenv").config();
-const {
-  renderError,
-  clampValue,
-  parseBoolean,
-  parseArray,
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { blacklist } from "../src/common/blacklist.js";
+import {
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     hide,
@@ -26,35 +24,63 @@ module.exports = async (req, res) => {
     layout,
     langs_count,
     exclude_repo,
+    size_weight,
+    count_weight,
     custom_title,
     locale,
+    border_radius,
+    border_color,
+    disable_animations,
+    hide_progress,
   } = req.query;
-  let topLangs;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+    return res.send(
+      renderError("Something went wrong", "This username is blacklisted", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(renderError("Something went wrong", "Locale not found"));
+  }
+
+  if (
+    layout !== undefined &&
+    (typeof layout !== "string" ||
+      !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Incorrect layout input"),
+    );
   }
 
   try {
-    topLangs = await fetchTopLanguages(
+    const topLangs = await fetchTopLanguages(
       username,
-      langs_count,
       parseArray(exclude_repo),
+      size_weight,
+      count_weight,
     );
 
-    const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY,
+    let cacheSeconds = parseInt(
+      cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS,
+      10,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${cacheSeconds / 2}, s-maxage=${cacheSeconds}`,
+    );
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -68,10 +94,29 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        langs_count,
+        border_radius,
+        border_color,
         locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
+        hide_progress: parseBoolean(hide_progress),
       }),
     );
   } catch (err) {
-    return res.send(renderError(err.message, err.secondaryMessage));
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    ); // Use lower cache period for errors.
+    return res.send(
+      renderError(err.message, err.secondaryMessage, {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 };

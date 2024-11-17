@@ -1,15 +1,19 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const pin = require("../api/pin");
-const renderRepoCard = require("../src/cards/repo-card");
-const { renderError } = require("../src/common/utils");
+import { jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import pin from "../api/pin.js";
+import { renderRepoCard } from "../src/cards/repo-card.js";
+import { renderError } from "../src/common/utils.js";
+import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_repo = {
   repository: {
     username: "anuraghazra",
     name: "convoychat",
-    stargazers: { totalCount: 38000 },
+    stargazers: {
+      totalCount: 38000,
+    },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
       color: "#2b7489",
@@ -51,7 +55,12 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderRepoCard(data_repo.repository));
+    expect(res.send).toBeCalledWith(
+      renderRepoCard({
+        ...data_repo.repository,
+        starCount: data_repo.repository.stargazers.totalCount,
+      }),
+    );
   });
 
   it("should get the query options", async () => {
@@ -76,7 +85,13 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderRepoCard(data_repo.repository, { ...req.query }),
+      renderRepoCard(
+        {
+          ...data_repo.repository,
+          starCount: data_repo.repository.stargazers.totalCount,
+        },
+        { ...req.query },
+      ),
     );
   });
 
@@ -121,6 +136,69 @@ describe("Test /api/pin", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError("Organization Repository Not found"),
+    );
+  });
+
+  it("should render error card if username in blacklist", async () => {
+    const req = {
+      query: {
+        username: "renovate-bot",
+        repo: "convoychat",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "This username is blacklisted"),
+    );
+  });
+
+  it("should render error card if wrong locale provided", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+        locale: "asdf",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "Language not found"),
+    );
+  });
+
+  it("should render error card if missing required parameters", async () => {
+    const req = {
+      query: {},
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError(
+        'Missing params "username", "repo" make sure you pass the parameters in URL',
+        "/api/pin?username=USERNAME&amp;repo=REPO_NAME",
+      ),
     );
   });
 });
